@@ -56,10 +56,11 @@ endif()
 #-----------------------------------------------------------------------------
 include(imstkAddExternalProject)
 imstk_add_external_project( VTK
-  ${${PROJECT_NAME}_VTK_SOURCE}
-  ${${PROJECT_NAME}_VTK_HASH}
+  URL "D:/VTK-9.0.3.zip"
   CMAKE_ARGS
        ${VTK_MODULE_SETTINGS}
+      -DVTK_GROUP_ENABLE_Qt:STRING=YES
+      -DVTK_MODULE_ENABLE_VTK_GUISupportQt:STRING=YES
       -DVTK_WRAP_PYTHON:BOOL=OFF
       -DVTK_LEGACY_REMOVE:BOOL=ON
       -DCMAKE_INSTALL_RPATH:PATH=$ORIGIN/../lib
