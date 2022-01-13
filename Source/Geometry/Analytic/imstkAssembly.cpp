@@ -45,4 +45,17 @@ Assembly::computeBoundingBox(Vec3d& min, Vec3d& max, const double imstkNotUsed(p
     updatePostTransformData();
 }
 
+void
+Assembly::setJoint(const double *v)
+{
+    for(int i=0; i<6; i++) angle[i] = v[i];
+    m_transformApplied = false;
+    this->postModified();
+}
+void
+Assembly::getJoint(double *v)
+{
+    for(int i=0; i<6; i++) v[i] = angle[i];
+}
+
 } // imstk

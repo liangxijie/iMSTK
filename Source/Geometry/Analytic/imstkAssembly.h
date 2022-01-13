@@ -49,7 +49,8 @@ public:
     ///
     virtual const std::string getTypeName() const override { return "Assembly"; }
 
-	vtkSmartPointer<vtkPolyData> polyData[6];
+	vtkSmartPointer<vtkPolyData> jointData[6];
+	vtkSmartPointer<vtkPolyData> bodyData;
 
 public:
     ///
@@ -58,11 +59,20 @@ public:
     void print() const override;
 
     ///
+    /// \brief Sets the radius of the cylinder
+    ///
+    void setJoint(const double *);
+    void getJoint(double *);
+
+    ///
     /// \brief Get the min, max of the AABB around the cylinder
     ///
     void computeBoundingBox(Vec3d& min, Vec3d& max, const double paddingPercent);
 
 protected:
     void applyTransform(const Mat4d& m) override;
+
+private:
+    double angle[6];
 };
 } // imstk

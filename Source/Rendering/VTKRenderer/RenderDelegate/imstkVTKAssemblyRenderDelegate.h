@@ -22,6 +22,9 @@
 #pragma once
 
 #include "imstkVTKRenderDelegate.h"
+#include <vtkActor.h>
+#include <vtkAssembly.h>
+
 
 namespace imstk
 {
@@ -47,7 +50,7 @@ public:
     ///
     /// \brief Event handler
     ///
-    //void processEvents() override;
+    void processEvents() override;
 
     ///
     /// \brief Callback when geometry changes
@@ -62,5 +65,8 @@ protected:
 
 protected:
 	std::shared_ptr<Assembly> m_geometry;
+
+    vtkNew<vtkAssembly> joint[6];
+    vtkNew<vtkActor> actor[6];
 };
 } // imstk

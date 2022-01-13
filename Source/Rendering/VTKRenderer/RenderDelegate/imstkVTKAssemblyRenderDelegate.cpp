@@ -26,31 +26,37 @@
 #include "imstkAssembly.h"
 #include "imstkLogger.h"
 
-#include <vtkActor.h>
-#include <vtkAssembly.h>
 #include <vtkColorTransferFunction.h>
 #include <vtkPolyData.h>
 #include <vtkPolyDataMapper.h>
 #include <vtkProperty.h>
+#include <vtkTransform.h>
 
 namespace imstk
 {
 VTKAssemblyRenderDelegate::VTKAssemblyRenderDelegate(std::shared_ptr<VisualModel> visualModel) : VTKRenderDelegate(visualModel)
 {
 	m_geometry = std::static_pointer_cast<Assembly>(visualModel->getGeometry());
-	LOG(INFO) << "VTKAssemblyRenderDelegate: " << 00000;
+
+    const Mat4d& transform = m_geometry->getTransform().transpose();
+    m_transform->SetMatrix(transform.data());
 
     // Setup mapper
     {
-        vtkNew<vtkAssembly> assembly;
+        for(int i=0; i<6; i++){
 			vtkNew<vtkPolyDataMapper> mapper;
-			mapper->SetInputData(m_geometry->polyData[1]);
-			vtkNew<vtkActor> actor;
-			actor->SetMapper(mapper);
-			assembly->AddPart(actor);
-        //actor->SetUserTransform(m_transform);
+			mapper->SetInputData(m_geometry->jointData[i]);
+			actor[i]->SetMapper(mapper);
+			joint[i]->AddPart(actor[i]);
+        }
+        for(int i=0; i<5; i++){
+			joint[i]->AddPart(joint[i+1]);
+        }
+        joint[1]->SetOrigin(-89, 0, 0);
+        joint[2]->SetOrigin(-515, 0, 0);
+        joint[0]->SetUserTransform(m_transform);
         //m_mapper = mapper;
-        m_actor  = actor;
+        m_actor  = joint[0];
     }
 
     update();
@@ -60,7 +66,7 @@ VTKAssemblyRenderDelegate::VTKAssemblyRenderDelegate(std::shared_ptr<VisualModel
 void
 VTKAssemblyRenderDelegate::updateRenderProperties()
 {
-    std::shared_ptr<RenderMaterial>    material      = m_visualModel->getRenderMaterial();
+    /*std::shared_ptr<RenderMaterial>    material      = m_visualModel->getRenderMaterial();
     vtkSmartPointer<vtkProperty>       actorProperty = vtkActor::SafeDownCast(m_actor)->GetProperty();
 
     // Display mode
@@ -84,8 +90,30 @@ VTKAssemblyRenderDelegate::updateRenderProperties()
         actorProperty->SetEdgeVisibility(false);
         actorProperty->SetVertexVisibility(false);
         break;
-    }
+    }*/
 
     m_actor->SetVisibility(m_visualModel->isVisible() ? 1 : 0);
+}
+
+void
+VTKAssemblyRenderDelegate::processEvents()
+{
+    VTKRenderDelegate::processEvents();
+
+    auto geometry = std::dynamic_pointer_cast<Assembly>(m_visualModel->getGeometry());
+
+    double v[6];
+    geometry->getJoint(v);
+
+    joint[0]->RotateX(0.5);
+    joint[1]->RotateY(0.5);
+    joint[2]->RotateY(0.1);
+
+    /*AffineTransform3d T = AffineTransform3d::Identity();
+    T.translate(geometry->getPosition(Geometry::DataType::PostTransform));
+    T.rotate(geometry->getOrientation(Geometry::DataType::PostTransform));
+    T.scale(geometry->getScaling());
+    T.matrix().transposeInPlace();
+    m_transform->SetMatrix(T.data());*/
 }
 }
