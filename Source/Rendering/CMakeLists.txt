@@ -20,7 +20,8 @@ set(VTK_H_FILES
   VTKRenderer/RenderDelegate/imstkVTKPointSetRenderDelegate.h
   VTKRenderer/RenderDelegate/imstkVTKFluidRenderDelegate.h
   VTKRenderer/RenderDelegate/imstkVTKPolyDataRenderDelegate.h
-  VTKRenderer/RenderDelegate/imstkVTKVolumeRenderDelegate.h)
+  VTKRenderer/RenderDelegate/imstkVTKVolumeRenderDelegate.h
+  VTKRenderer/RenderDelegate/imstkVTKAssemblyRenderDelegate.h)
 
 set(VTK_CPP_FILES
   VTKRenderer/imstkVTKRenderer.cpp
@@ -40,7 +41,8 @@ set(VTK_CPP_FILES
   VTKRenderer/RenderDelegate/imstkVTKPointSetRenderDelegate.cpp
   VTKRenderer/RenderDelegate/imstkVTKFluidRenderDelegate.cpp
   VTKRenderer/RenderDelegate/imstkVTKPolyDataRenderDelegate.cpp
-  VTKRenderer/RenderDelegate/imstkVTKVolumeRenderDelegate.cpp)
+  VTKRenderer/RenderDelegate/imstkVTKVolumeRenderDelegate.cpp
+  VTKRenderer/RenderDelegate/imstkVTKAssemblyRenderDelegate.cpp)
 
 set(RENDERING_H_FILES ${VTK_H_FILES})
 set(RENDERING_CPP_FILES ${VTK_CPP_FILES})

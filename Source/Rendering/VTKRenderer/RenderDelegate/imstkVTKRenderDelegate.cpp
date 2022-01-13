@@ -39,6 +39,7 @@
 #include "imstkVTKSurfaceMeshRenderDelegate.h"
 #include "imstkVTKSurfaceNormalRenderDelegate.h"
 #include "imstkVTKTetrahedralMeshRenderDelegate.h"
+#include "imstkVTKAssemblyRenderDelegate.h"
 
 #include <vtkActor.h>
 #include <vtkGPUVolumeRayCastMapper.h>
@@ -139,6 +140,10 @@ VTKRenderDelegate::makeDelegate(std::shared_ptr<VisualModel> visualModel)
             {
                 return std::make_shared<VTKImageDataRenderDelegate>(visualModel);
             }
+        }
+        else if (geomType == "Assembly")
+        {
+            return std::make_shared<VTKAssemblyRenderDelegate>(visualModel);
         }
     }
     LOG(FATAL) << "RenderDelegate::makeDelegate error: Geometry type incorrect.";
