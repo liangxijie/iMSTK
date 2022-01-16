@@ -81,6 +81,7 @@ public:
     /// only renders may set it
     ///
     friend class VTKRenderer;
+    friend class XRenderer;
 
 public:
     ///
