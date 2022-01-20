@@ -91,22 +91,22 @@ public:
     ///
     /// \brief Posted when a button on the mouse is pressed (not continuously)
     ///
-    SIGNAL(MouseDeviceClient, mouseButtonPress);
+    imstkSIGNAL(MouseDeviceClient, mouseButtonPress);
 
     ///
     /// \brief Posted when a button on the mouse is released (not continuously)
     ///
-    SIGNAL(MouseDeviceClient, mouseButtonRelease);
+    imstkSIGNAL(MouseDeviceClient, mouseButtonRelease);
 
     ///
     /// \brief Posted when mouse scrolls
     ///
-    SIGNAL(MouseDeviceClient, mouseScroll);
+    imstkSIGNAL(MouseDeviceClient, mouseScroll);
 
     ///
     /// \brief Posted when mouse moves
     ///
-    SIGNAL(MouseDeviceClient, mouseMove);
+    imstkSIGNAL(MouseDeviceClient, mouseMove);
     // *INDENT-ON*
 
 public:

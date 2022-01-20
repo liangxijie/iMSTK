@@ -74,7 +74,7 @@ public:
     virtual ~DeviceClient() = default;
 
     // *INDENT-OFF*
-    SIGNAL(DeviceClient,buttonStateChanged);
+    imstkSIGNAL(DeviceClient,buttonStateChanged);
     // *INDENT-ON*
 
     ///

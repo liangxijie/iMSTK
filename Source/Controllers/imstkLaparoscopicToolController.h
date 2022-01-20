@@ -57,12 +57,12 @@ public:
     ///
     /// \brief Fired once when the jaw transitions to closed state
     /// 
-    SIGNAL(LaparoscopicToolController, JawClosed);
+    imstkSIGNAL(LaparoscopicToolController, JawClosed);
 
     ///
     /// \brief Fired once when the jaw transitions to open state
     /// 
-    SIGNAL(LaparoscopicToolController, JawOpened);
+    imstkSIGNAL(LaparoscopicToolController, JawOpened);
     // *INDENT-ON*
 
 public:

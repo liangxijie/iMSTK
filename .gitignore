@@ -1,3 +1,4 @@
 *.swp
 Docs/source/_build/
 Docs/source/.vscode/settings.json
+build

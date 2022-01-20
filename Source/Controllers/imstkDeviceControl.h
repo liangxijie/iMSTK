@@ -47,7 +47,7 @@ public:
 
 public:
     // *INDENT-OFF*
-    SIGNAL(TrackingDeviceControl, modified);
+    imstkSIGNAL(TrackingDeviceControl, modified);
     // *INDENT-ON*
 
 public:

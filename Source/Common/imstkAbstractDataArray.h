@@ -44,7 +44,7 @@ public:
     virtual ~AbstractDataArray() { };
 
     // *INDENT-OFF*
-    SIGNAL(AbstractDataArray, modified);
+    imstkSIGNAL(AbstractDataArray, modified);
     // *INDENT-ON*
 
 public:

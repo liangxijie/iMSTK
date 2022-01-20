@@ -83,7 +83,7 @@ public:
 
 public:
     // *INDENT-OFF*
-    SIGNAL(Geometry, modified);
+    imstkSIGNAL(Geometry, modified);
     // *INDENT-ON*
 public:
     ///

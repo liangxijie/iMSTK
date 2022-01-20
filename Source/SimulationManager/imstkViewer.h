@@ -80,7 +80,7 @@ public:
     ///
     /// \brief Set the render window size
     ///
-    virtual void setSize(int, int) { }
+    virtual void setSize(const int, const int) { }
     void setSize(Vec2i size) { setSize(size[0], size[1]); }
 
     virtual const Vec2i getSize() const { return Vec2i::Zero(); }

@@ -52,7 +52,7 @@ public:
 
 public:
     // *INDENT-OFF*
-    SIGNAL(VisualModel, modified);
+    imstkSIGNAL(VisualModel, modified);
     // *INDENT-ON*
 
 public:
